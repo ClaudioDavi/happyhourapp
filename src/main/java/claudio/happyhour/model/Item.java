@@ -20,10 +20,11 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    
+
     private int id;
     private String name;
     private BigDecimal price;
+    private int amount;
 
     public Item(String nam, String pric) {
         setValidPrice(pric);
@@ -72,5 +73,13 @@ public class Item {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }
