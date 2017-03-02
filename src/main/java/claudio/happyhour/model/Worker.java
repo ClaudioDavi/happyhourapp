@@ -5,11 +5,12 @@
  */
 package claudio.happyhour.model;
 
-import claudio.happyhour.validator.EmailValidator;
+import claudio.happyhour.helper.EmailValidator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
@@ -24,7 +25,8 @@ public class Worker {
 
     private String email;
     private String name;
-
+    
+    @Transient
     private EmailValidator validator = EmailValidator.getInstance();
 
     public Worker() {
@@ -87,4 +89,5 @@ public class Worker {
     public void setName(String name) {
         this.name = name;
     }
+    
 }

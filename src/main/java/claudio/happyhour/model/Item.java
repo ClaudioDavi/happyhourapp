@@ -5,7 +5,11 @@
  */
 package claudio.happyhour.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,9 +33,11 @@ public class Item {
     public Item(String nam, String pric) {
         setValidPrice(pric);
         name = nam;
+        amount = 1;
     }
 
     public Item() {
+        amount = 1;
         setPrice(BigDecimal.ZERO);
     }
 
@@ -81,5 +87,17 @@ public class Item {
 
     public int getAmount() {
         return amount;
+    }
+    @Override
+    public String toString(){
+        ObjectMapper mapper = new ObjectMapper();
+        String itemJson= "";
+        try {
+            itemJson = mapper.writeValueAsString(this);
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return itemJson;
     }
 }
