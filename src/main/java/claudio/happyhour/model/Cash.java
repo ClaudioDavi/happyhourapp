@@ -11,9 +11,12 @@ import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,10 +29,19 @@ public class Cash {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private BigDecimal value;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "worker_id")
     private Worker worker;
 
-    
-    
+    public Worker getWorker() {
+        return worker;
+    }
+
+    public void setWorker(Worker wk) {
+        worker = wk;
+    }
+
     public int getId() {
         return id;
     }
@@ -43,20 +55,21 @@ public class Cash {
     }
 
     public void setValue(BigDecimal value) {
-        if(value.compareTo(BigDecimal.ZERO) >= 0) {
+        if (value.compareTo(BigDecimal.ZERO) >= 0) {
             this.value = value;
         }
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         ObjectMapper mapper = new ObjectMapper();
-        String cashJson= "";
+        String cashJson = "";
         try {
             cashJson = mapper.writeValueAsString(this);
         } catch (JsonProcessingException ex) {
             Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return cashJson;
     }
 }
