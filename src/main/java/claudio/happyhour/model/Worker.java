@@ -6,6 +6,7 @@
 package claudio.happyhour.model;
 
 import claudio.happyhour.helper.EmailValidator;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Worker {
 
     private String email;
     private String name;
+    private BigDecimal monthlyContribution;
     
     @Transient
     private EmailValidator validator = EmailValidator.getInstance();
@@ -88,6 +90,14 @@ public class Worker {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getMonthlyContribution() {
+        return monthlyContribution;
+    }
+
+    public void setMonthlyContribution(BigDecimal monthlyContribution) {
+        this.monthlyContribution = monthlyContribution;
     }
     
 }
