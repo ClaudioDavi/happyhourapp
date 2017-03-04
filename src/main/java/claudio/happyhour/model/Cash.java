@@ -28,7 +28,7 @@ public class Cash {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private BigDecimal value;
+    private BigDecimal total;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "worker_id")
@@ -51,12 +51,28 @@ public class Cash {
     }
 
     public BigDecimal getValue() {
-        return value;
+        return total;
+    }
+
+    public boolean checkValidTotal(String total) {
+
+        try {
+            BigDecimal value = new BigDecimal(total);
+            if (value.signum() >= 0) {
+                setValue(value);
+                return true;
+            }
+            return false;
+
+        } catch (NumberFormatException nb) {
+            System.out.println("Not a number");
+            return false;
+        }
     }
 
     public void setValue(BigDecimal value) {
         if (value.compareTo(BigDecimal.ZERO) >= 0) {
-            this.value = value;
+            this.total = value;
         }
     }
 
