@@ -1,5 +1,5 @@
 'use strict';
-angular.module('HappyHour').factory('WorkerService', ['$http', '$q', function ($http, $q) {
+App.factory('WorkerService', ['$http', '$q', function ($http, $q) {
         var REST_URI = 'localhost:8282/worker/';
 
         var factory = {
