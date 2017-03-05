@@ -1,10 +1,10 @@
 [Tt]arget*/
 nbproject*/
 nb-configuration.xml
-front-end/logs/*
-front-end/!.gitkeep
-front-end/node_modules/
-front-end/bower_components/
-front-end/tmp
-front-end/.DS_Store
-front-end/.idea
+/src/main/front-end/logs/*
+/src/main/front-end/!.gitkeep
+/src/main/front-end/node_modules/
+/src/main/front-end/app/bower_components/
+/src/main/front-end/tmp
+/src/main/front-end/.DS_Store
+/src/main/front-end/.idea
