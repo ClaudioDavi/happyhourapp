@@ -42,7 +42,7 @@ public class WorkerController {
         return new ResponseEntity<>(header, HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Worker>> getAllWorkers() {
        Iterable<Worker> wks = wkRep.findAll();
        

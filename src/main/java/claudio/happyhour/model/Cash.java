@@ -27,7 +27,7 @@ public class Cash {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private BigDecimal total;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,7 +42,7 @@ public class Cash {
         worker = wk;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

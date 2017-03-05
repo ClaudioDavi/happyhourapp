@@ -35,7 +35,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private int id;
+    private long id;
 
     @JsonSerialize(using = CalendarSerializer.class)
     private Date date;
@@ -82,11 +82,11 @@ public class Event {
         this.useStoredCash = useStoredCash;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
