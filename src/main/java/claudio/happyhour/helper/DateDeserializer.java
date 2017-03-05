@@ -13,22 +13,24 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
  * @author claudio
  */
-public class CalendarDeserializer extends JsonDeserializer<Calendar> {
+public class DateDeserializer extends JsonDeserializer<Date> {
 
     @Override
-    public Calendar deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Date deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         try {
             String formatted = p.getValueAsString();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(sdf.parse(formatted));
-            return calendar;
+            Date dt = new Date(sdf.format(sdf.parse(formatted)));
+            return dt;
         } catch (ParseException e) {
             throw new IOException(e);
         }

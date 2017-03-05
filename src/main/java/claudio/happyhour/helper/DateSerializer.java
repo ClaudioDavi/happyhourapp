@@ -12,18 +12,19 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
  * @author claudio
  */
-public class CalendarSerializer extends JsonSerializer<Calendar> {
+public class DateSerializer extends JsonSerializer<Date> {
 
     @Override
-    public void serialize(Calendar value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
+    public void serialize(Date value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
         if (value != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String formatted = sdf.format(value.getTime());
+            String formatted = sdf.format(value);
             gen.writeString(formatted);
         }
     }
