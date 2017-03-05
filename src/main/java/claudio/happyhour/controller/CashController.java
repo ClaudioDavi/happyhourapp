@@ -41,7 +41,7 @@ public class CashController {
         return new ResponseEntity<>(header, HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Cash>> getAllCash() {
         Iterable<Cash> chs = cashRep.findAll();
 
@@ -64,7 +64,7 @@ public class CashController {
         if (currentCash == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        currentCash.setValue(ch.getValue());
+        currentCash.checkValidTotal(ch.getValue().toString());
 
         cashRep.save(currentCash);
 

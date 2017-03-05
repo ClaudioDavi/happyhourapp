@@ -44,7 +44,7 @@ public class EventController {
         return new ResponseEntity<>(header, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Event>> listAllEvents() {
         Iterable<Event> evts = eventRep.findAll();
 

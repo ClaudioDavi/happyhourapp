@@ -15,18 +15,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  *
  * @author claudio
  */
-//@org.springframework.context.annotation.Configuration
-//@EnableWebMvc
-//@ComponentScan(basePackages = "claudio.happyhour.controller")
-//public class Configuration{
-//    
-//    @Bean
-//    public InternalResourceViewResolver resolver() {
-//        InternalResourceViewResolver vr = new InternalResourceViewResolver();
-//        vr.setPrefix("/");
-//        vr.setSuffix(".jsp");
-//        return vr;
-//    }
-//    
-//    
-//}
+@org.springframework.context.annotation.Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = "claudio.happyhour.controller")
+public class Configuration{
+    
+    @Bean
+    public InternalResourceViewResolver resolver() {
+        InternalResourceViewResolver vr = new InternalResourceViewResolver();
+        vr.setPrefix("/");
+        vr.setSuffix(".jsp");
+        return vr;
+    }
+    
+}

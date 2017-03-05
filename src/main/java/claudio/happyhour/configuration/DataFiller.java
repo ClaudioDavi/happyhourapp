@@ -13,10 +13,8 @@ import claudio.happyhour.repository.CashRepository;
 import claudio.happyhour.repository.EventRepository;
 import claudio.happyhour.repository.ItemRepository;
 import claudio.happyhour.repository.WorkerRepository;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -27,12 +25,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DataFiller implements CommandLineRunner {
-    
+
     private final WorkerRepository wkRep;
     private final ItemRepository itRep;
     private final EventRepository evtRep;
     private final CashRepository cashRep;
-    
+
     @Autowired
     public DataFiller(CashRepository cashRep, WorkerRepository wkRep, ItemRepository itRep, EventRepository evtRep) {
         this.wkRep = wkRep;
@@ -40,7 +38,7 @@ public class DataFiller implements CommandLineRunner {
         this.evtRep = evtRep;
         this.cashRep = cashRep;
     }
-    
+
     @Override
     public void run(String... strings) throws Exception {
         this.wkRep.save(new Worker("claudio@email.com", "claudio"));
@@ -50,15 +48,18 @@ public class DataFiller implements CommandLineRunner {
         it2.setAmount(3);
         this.itRep.save(it2);
         this.itRep.save(new Item("pizza", "50"));
-        
+
         Event evt = new Event();
-        
+
         evt.setUseStoredCash(false);
         evt.setItems(SetIterableConverter.newHashSet(itRep.findAll()));
         evt.setWorkers(SetIterableConverter.newHashSet(wkRep.findAll()));
         evt.setTotalValue();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        evt.setDate(new Date(sdf.format(sdf.parse("06/03/2010"))));
         this.evtRep.save(evt);
-        
+
     }
-    
+
 }
