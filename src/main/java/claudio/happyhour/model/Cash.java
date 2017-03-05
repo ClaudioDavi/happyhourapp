@@ -46,7 +46,7 @@ public class Cash {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -70,7 +70,7 @@ public class Cash {
         }
     }
 
-    public void setValue(BigDecimal value) {
+    private void setValue(BigDecimal value) {
         if (value.compareTo(BigDecimal.ZERO) >= 0) {
             this.total = value;
         }

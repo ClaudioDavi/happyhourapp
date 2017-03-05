@@ -5,8 +5,8 @@
  */
 package claudio.happyhour.model;
 
-import claudio.happyhour.helper.CalendarDeserializer;
-import claudio.happyhour.helper.CalendarSerializer;
+import claudio.happyhour.helper.DateDeserializer;
+import claudio.happyhour.helper.DateSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -24,6 +24,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -37,7 +39,7 @@ public class Event {
 
     private long id;
 
-    @JsonSerialize(using = CalendarSerializer.class)
+    @Temporal(TemporalType.DATE)
     private Date date;
     private boolean useStoredCash;
     private BigDecimal totalValue;
@@ -101,24 +103,23 @@ public class Event {
     public BigDecimal getTotalValue() {
         return totalValue;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         ObjectMapper mapper = new ObjectMapper();
         SimpleModule dateModule = new SimpleModule();
-        dateModule.addSerializer(Calendar.class, new CalendarSerializer());  
-        dateModule.addDeserializer(Calendar.class,new CalendarDeserializer());
+        dateModule.addSerializer(Date.class, new DateSerializer());
+        dateModule.addDeserializer(Date.class, new DateDeserializer());
         mapper.registerModule(dateModule);
-        
-        String eventJson= "";
+
+        String eventJson = "";
         try {
             eventJson = mapper.writeValueAsString(this);
         } catch (JsonProcessingException ex) {
             Logger.getLogger(Event.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return eventJson;
     }
 
-    
 }

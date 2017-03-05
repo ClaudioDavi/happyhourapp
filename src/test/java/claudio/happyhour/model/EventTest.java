@@ -6,8 +6,7 @@
 package claudio.happyhour.model;
 
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.After;
@@ -39,7 +38,7 @@ public class EventTest {
         i.setId(0);
         i2 = new Item("water", "1");
         i2.setId(1);
-        e.setDate(new Date("jan-2-1999"));
+        e.setDate(Calendar.getInstance().getTime());
         e.setUseStoredCash(false);
         
         Set<Item> its = new HashSet<>();
@@ -67,5 +66,5 @@ public class EventTest {
     public void testSumOfItems(){
         assertEquals(new BigDecimal("3.50"), e.getTotalValue());
     }
-   
+    
 }

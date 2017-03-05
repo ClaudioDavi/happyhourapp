@@ -27,7 +27,7 @@ public class Worker {
     private String email;
     private String name;
     private BigDecimal monthlyContribution;
-    
+
     @Transient
     private EmailValidator validator = EmailValidator.getInstance();
 
@@ -38,6 +38,7 @@ public class Worker {
     public Worker(String email, String name) {
         if (setValidatedEmail(email)) {
             setName(name);
+            setValidContribution("0");
         }
     }
 
@@ -96,8 +97,24 @@ public class Worker {
         return monthlyContribution;
     }
 
-    public void setMonthlyContribution(BigDecimal monthlyContribution) {
+    public boolean setValidContribution(String contrib) {
+        try {
+            BigDecimal cont = new BigDecimal(contrib);
+            if (cont.signum() >= 0) {
+                setMonthlyContribution(cont);
+                return true;
+            }
+            return false;
+
+        } catch (NumberFormatException nb) {
+            System.out.println("Not a number");
+            return false;
+        }
+
+    }
+
+    private void setMonthlyContribution(BigDecimal monthlyContribution) {
         this.monthlyContribution = monthlyContribution;
     }
-    
+
 }
