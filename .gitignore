@@ -8,3 +8,12 @@ nb-configuration.xml
 /src/main/front-end/tmp
 /src/main/front-end/.DS_Store
 /src/main/front-end/.idea
+/src/main/front-end/.sass-cache
+/src/main/front-end/connect.lock
+/src/main/front-end/coverage/*
+/src/main/front-end/libpeerconnection.log
+/src/main/front-end/npm-debug.log
+/src/main/front-end/testem.log
+/src/main/front-end/typings
+/src/main/front-end/.DS_Store
+/src/main/front-end/Thumbs.db

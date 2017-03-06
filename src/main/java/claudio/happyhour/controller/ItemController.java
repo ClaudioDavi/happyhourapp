@@ -41,7 +41,7 @@ public class ItemController {
         return new ResponseEntity<>(header, HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "/all", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Item>> getAllItems() {
         Iterable<Item> items = itRep.findAll();
 

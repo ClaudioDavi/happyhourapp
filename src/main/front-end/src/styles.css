@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+}
+
+.app{
+    height: 100vh;
+}
+md-toolbar {
+    z-index: 10;
+}
+md-card {
+  margin: 12px;
+}
+@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';

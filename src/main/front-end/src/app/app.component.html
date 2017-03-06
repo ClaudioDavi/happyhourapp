@@ -1,0 +1,42 @@
+<!-- Toolbar -->
+<!-- centered list of Events -->
+<!-- sidenav with workers-->
+<section class="app flex-container" fxLayout="column" fxLayoutAlign="start stretch">
+    <md-toolbar color="primary" class="mat-elevation-z10">
+     Happy Hour
+    </md-toolbar>
+
+  <md-sidenav-container fxFlex>
+      <md-list>
+        <md-list-item *ngFor="let event of events">
+          <button md-icon-button (click)="showDetails(event);sidenav.open()">
+              <md-icon>local_bar</md-icon>
+          </button>
+          <h3 md-line>Save the Date: {{event.date}} </h3>
+          <p md-line>
+            <span>Total Price: {{event.totalValue}} </span>
+          </p>
+        </md-list-item>
+      </md-list>
+
+    <md-sidenav mode="side" align="end" opened class="mat-elevation-z6" #sidenav>
+     <md-tab-group>
+       <md-tab label="Goers">
+           <section class="flex-container" fxLayout="column" fxLayoutAlign="start stretch">
+
+               <md-card *ngFor="let employee of selectedEvent?.employees">
+                   <md-card-title>{{employee.name}}</md-card-title>
+                   <md-card-content></md-card-content>
+               </md-card>
+           </section>
+        <footer class="tab-actions">
+            <button md-fab color="accent" (click)="showDialog()">
+                <md-icon>add</md-icon>
+            </button>
+        </footer>
+       </md-tab>
+       <md-tab label="Items"></md-tab>
+     </md-tab-group>
+   </md-sidenav>
+  </md-sidenav-container>
+</section>

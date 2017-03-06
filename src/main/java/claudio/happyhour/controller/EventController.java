@@ -35,7 +35,7 @@ public class EventController {
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
     public ResponseEntity<Void> createEvent(@RequestBody Event evt, UriComponentsBuilder ucBuilder) {
-
+        evt.setTotalValue();
         eventRep.save(evt);
 
         HttpHeaders header = new HttpHeaders();
@@ -74,6 +74,7 @@ public class EventController {
         currentEvent.setItems(evt.getItems());
         currentEvent.setUseStoredCash(evt.isUseStoredCash());
         currentEvent.setWorkers(evt.getWorkers());
+        currentEvent.setTotalValue();
 
         eventRep.save(currentEvent);
 
